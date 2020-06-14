@@ -1,0 +1,75 @@
+.link-list {
+  max-width: 700px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #FFF;
+  font-size: 20px;
+}
+
+.link-list article {
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: 0.2s;
+}
+
+.link-list article.a0 {
+  background: #4d648dd4;
+}
+
+.link-list article.a1 {
+  background: #0E9AA7;
+}
+
+.link-list article.a2 {
+  background: #0391CF;
+}
+
+.link-list article.a3 {
+  background: #F37737e5;
+}
+
+.link-list article.a4 {
+  background: #4C86B4;
+}
+
+.link-list article:hover {
+  opacity: 0.8;
+}
+
+.link-list article p {
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.link-list article a {
+  font-size: 18px;
+  margin-top: 5px;
+  color: #FFF;
+}
+
+.link-list .actions {
+  /* border: 3px solid rgba(0, 0, 0, 0.05); */
+  border-radius: 31.5px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.link-list .actions span {
+  margin: 10px 20px;
+}
+
+.link-list .actions span#previous {
+  background-image: url('../../assets/de-volta.svg');
+  height: 40px;
+  width: 40px;
+}
+
+.link-list .actions span#next {
+  background-image: url('../../assets/proximo.svg');
+  height: 40px;
+  width: 40px;
+}

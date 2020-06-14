@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  background-color: #fff;
+  color: black;
+}
+
+div#root {
+  display: flex;
+  justify-content: center;
+}
+
+div.App {
+  flex: 1;
+  max-width: 700px;
+}
