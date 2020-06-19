@@ -18,5 +18,5 @@ div#root {
 
 div.App {
   flex: 1;
-  max-width: 700px;
+  max-width: 600px;
 }

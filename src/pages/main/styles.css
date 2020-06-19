@@ -1,10 +1,13 @@
 .link-list {
-  max-width: 700px;
+  /* max-width: 600px; */
   margin: 20px auto 0;
   padding: 0 20px;
   font-family: 'Roboto Condensed', sans-serif;
   color: #FFF;
   font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .link-list article {
@@ -50,16 +53,22 @@
 }
 
 .link-list .actions {
-  /* border: 3px solid rgba(0, 0, 0, 0.05); */
+  width: 90%;
   border-radius: 31.5px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
-  cursor: pointer;
+  align-self: center;
 }
 
 .link-list .actions span {
   margin: 10px 20px;
+  cursor: pointer;
+}
+
+.link-list .actions span[disabled] {
+  opacity: 0.2;
+  cursor: default;
 }
 
 .link-list .actions span#previous {

@@ -1,48 +1,56 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import api from '../../services/api'
 import './styles.css'
 
-export default class Main extends Component {
-  state = {
-    links: []
-  }
-
-  loadLinks = async () => {
-    const response = await api.get('/links')
-
-    this.setState({ links: response.data.docs })
-  }
+export default function Main() {
+  const [links, setLinks] = useState([])
+  const [totalPages, setTotalPages] = useState()
+  const [currentPage, setCurrentPage] = useState()
+  let cont = -1
   
-  componentDidMount() {
-    this.loadLinks()
+  useEffect(() => {
+    awaitApi('/links')
+  }, [])
+
+  async function awaitApi(route) {
+    const response = await api.get(route)
+    
+    setLinks(response.data.docs)
+    setTotalPages(Number(response.data.pages))
+    setCurrentPage(Number(response.data.page))
   }
 
-  render() {
-    const { links } = this.state
-    let cont = -1
+  function previousPage() {
+    if (currentPage !== 1) {
+      console.log(currentPage - 1)
+      awaitApi(`/links?page=${currentPage - 1}`)
+    }
+  }
 
-    return (
-      <div className="link-list">
+  function nextPage() {
+    if (currentPage !== totalPages) {
+      awaitApi(`/links?page=${currentPage + 1}`)
+    }
+  }
 
-        {links.map(link => {
-          (cont >= 4) ? cont = 0 : cont++
+  return (
+    <div className="link-list">
+      {links.map(link => {
+        (cont >= 4) ? cont = 0 : cont++
 
-          console.log(cont)
+        return (
+          <article key={link._id} className={`a${cont}`}>
+            <strong>{link.title}</strong>
+            <p>{link.description}</p>
+            <a target="_blank" rel="noopener noreferrer" href={link.url}>Acessar</a>
+          </article>
+        )
+      })}
 
-          return (
-            <article key={link._id} className={`a${cont}`}>
-              <strong>{link.title}</strong>
-              <p>{link.description}</p>
-              <a target="_blank" href={link.url}>Acessar</a>
-            </article>
-          )
-        })}
-
-        <div className="actions">
-          <span id="previous"></span>
-          <span id="next"></span>
-        </div>
+      <div className="actions">
+        <span disabled={currentPage === 1} id="previous" onClick={previousPage} ></span>
+        <span disabled={currentPage === totalPages} id="next" onClick={nextPage} ></span>
       </div>
-    )
-  }
+    </div>
+  )
 }
