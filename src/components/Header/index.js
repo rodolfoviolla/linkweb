@@ -1,14 +1,22 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './styles.css'
 
-const Header = () => (
-  <header id="main-header">
-    <div id="main-actions">
+const Header = ({ title, src }) => (
+  <header id="header">
+    
+    {(src === 'main') && <div id="actions">
       <span id="menu"></span>
-      <span id="add"></span>
-    </div>
-    <div id="main-text">
-      Links Úteis
+      <Link id="add" to={'/add'}></Link>
+    </div>}
+
+    {(src === 'add') && <div id="actions">
+      <span id="back"></span>
+      <Link id="cancel" to={'/'}></Link>
+    </div>}
+
+    <div id="title">
+      {title}
     </div>
   </header>
 )

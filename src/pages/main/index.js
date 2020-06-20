@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Header from '../../components/Header'
 import api from '../../services/api'
 import './styles.css'
 
@@ -22,7 +23,6 @@ export default function Main() {
 
   function previousPage() {
     if (currentPage !== 1) {
-      console.log(currentPage - 1)
       awaitApi(`/links?page=${currentPage - 1}`)
     }
   }
@@ -34,23 +34,26 @@ export default function Main() {
   }
 
   return (
-    <div className="link-list">
-      {links.map(link => {
-        (cont >= 4) ? cont = 0 : cont++
+    <>
+      <Header title={'Links Úteis'} src={'main'} />
+      <div className="link-list">
+        {links.map(link => {
+          (cont >= 4) ? cont = 0 : cont++
 
-        return (
-          <article key={link._id} className={`a${cont}`}>
-            <strong>{link.title}</strong>
-            <p>{link.description}</p>
-            <a target="_blank" rel="noopener noreferrer" href={link.url}>Acessar</a>
-          </article>
-        )
-      })}
+          return (
+            <article key={link._id} className={`a${cont}`}>
+              <strong>{link.title}</strong>
+              <p>{link.description}</p>
+              <a target="_blank" rel="noopener noreferrer" href={link.url}>Acessar</a>
+            </article>
+          )
+        })}
 
-      <div className="actions">
-        <span disabled={currentPage === 1} id="previous" onClick={previousPage} ></span>
-        <span disabled={currentPage === totalPages} id="next" onClick={nextPage} ></span>
+        <div className="actions">
+          <span disabled={currentPage === 1} id="previous" onClick={previousPage} ></span>
+          <span disabled={currentPage === totalPages} id="next" onClick={nextPage} ></span>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
