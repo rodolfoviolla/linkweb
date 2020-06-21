@@ -42,9 +42,13 @@ export default function Main() {
 
           return (
             <article key={link._id} className={`a${cont}`}>
-              <strong>{link.title}</strong>
-              <p>{link.description}</p>
-              <a target="_blank" rel="noopener noreferrer" href={link.url}>Acessar</a>
+              <div id="text">
+                <strong>{link.title}</strong>
+                <p>{link.description}</p>
+              </div>
+              <div id="link">
+                <a target="_blank" rel="noopener noreferrer" href={link.url}></a>
+              </div>
             </article>
           )
         })}

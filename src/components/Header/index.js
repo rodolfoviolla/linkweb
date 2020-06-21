@@ -4,19 +4,12 @@ import './styles.css'
 
 const Header = ({ title, src }) => (
   <header id="header">
-    
-    {(src === 'main') && <div id="actions">
-      <span id="menu"></span>
-      <Link id="add" to={'/add'}></Link>
-    </div>}
-
-    {(src === 'add') && <div id="actions">
-      <span id="back"></span>
-      <Link id="cancel" to={'/'}></Link>
-    </div>}
-
     <div id="title">
       {title}
+    </div>
+    <div id="button">
+      {(src === 'main') && <Link id="add" to={'/add'}></Link>}
+      {(src === 'add') && <Link id="cancel" to={'/'}></Link>}
     </div>
   </header>
 )
